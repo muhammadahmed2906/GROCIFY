@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import type { Recipe } from '@/lib/types';
@@ -23,7 +22,10 @@ export function RecipeDialog({ recipe, isOpen, onOpenChange }: RecipeDialogProps
 
   // Get a random placeholder image
   const placeholderImage = PlaceHolderImages[Math.floor(Math.random() * PlaceHolderImages.length)];
-  
+
+  const ingredientsList = recipe.ingredients.split('\n').filter(item => item.trim() !== '');
+  const instructionsList = recipe.instructions.split('\n').filter(item => item.trim() !== '');
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md w-full">
@@ -37,19 +39,25 @@ export function RecipeDialog({ recipe, isOpen, onOpenChange }: RecipeDialogProps
               style={{ objectFit: 'cover' }}
             />
           </div>
-          <DialogTitle className="font-headline text-2xl">{recipe.name}</DialogTitle>
+          <DialogTitle>{recipe.name}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="max-h-[50vh] pr-4 -mr-4">
-            <div className="space-y-4">
-                <div>
-                    <h3 className="font-semibold font-headline mb-2">Ingredients</h3>
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">{recipe.ingredients}</p>
-                </div>
-                <div>
-                    <h3 className="font-semibold font-headline mb-2">Instructions</h3>
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">{recipe.instructions}</p>
-                </div>
-            </div>
+          <div>
+            <h3 className="font-semibold mb-2">Ingredients:</h3>
+            <ul className="list-disc list-inside">
+              {ingredientsList.map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold mb-2">Instructions:</h3>
+            <ol className="list-decimal list-inside">
+              {instructionsList.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ol>
+          </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>

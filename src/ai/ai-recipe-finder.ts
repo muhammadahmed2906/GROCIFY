@@ -18,8 +18,8 @@ const FindRecipeInputSchema = z.object({
 export type FindRecipeInput = z.infer<typeof FindRecipeInputSchema>;
 
 const FindRecipeOutputSchema = z.object({
-  ingredients: z.string().describe('A list of ingredients required for the recipe.'),
-  instructions: z.string().describe('Cooking instructions for the recipe.'),
+  ingredients: z.string().describe('A list of ingredients for the recipe. Each ingredient should be on a new line.'),
+  instructions: z.string().describe('Cooking instructions for the recipe. Each step should be on a new line and should not be numbered.'),
 });
 export type FindRecipeOutput = z.infer<typeof FindRecipeOutputSchema>;
 
@@ -31,9 +31,13 @@ const prompt = ai.definePrompt({
   name: 'findRecipePrompt',
   input: {schema: FindRecipeInputSchema},
   output: {schema: FindRecipeOutputSchema},
-  prompt: `You are an expert chef specializing in generating recipes.
+  prompt: `You are an expert chef who provides recipes.
+For the given dish and number of people, provide a list of ingredients and a list of cooking instructions.
 
-You will generate a list of ingredients and cooking instructions for the specified dish, tailored to the specified number of people.
+- List each ingredient on a new line.
+- List each instruction on a new line.
+- Do not number the instructions.
+- Do not add any introductory or concluding text.
 
 Dish Name: {{{dishName}}}
 Number of People: {{{numberOfPeople}}}
