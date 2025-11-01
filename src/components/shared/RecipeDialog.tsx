@@ -28,7 +28,7 @@ export function RecipeDialog({ recipe, isOpen, onOpenChange }: RecipeDialogProps
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md w-full">
+      <DialogContent className="max-w-md w-full" aria-describedby="recipe-description">
         <DialogHeader>
           <div className="relative h-48 w-full -mx-6 -mt-6 mb-4 rounded-t-lg overflow-hidden">
             <Image
@@ -37,27 +37,30 @@ export function RecipeDialog({ recipe, isOpen, onOpenChange }: RecipeDialogProps
               data-ai-hint={placeholderImage.imageHint}
               fill
               style={{ objectFit: 'cover' }}
+              sizes="(max-width: 512px) 100vw, 512px"
             />
           </div>
           <DialogTitle>{recipe.name}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="max-h-[50vh] pr-4 -mr-4">
-          <div>
-            <h3 className="font-semibold mb-2">Ingredients:</h3>
-            <ul className="list-disc list-inside">
-              {ingredientsList.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-4">
-            <h3 className="font-semibold mb-2">Instructions:</h3>
-            <ol className="list-decimal list-inside">
-              {instructionsList.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-            </ol>
-          </div>
+            <div id="recipe-description">
+              <div>
+                <h3 className="font-semibold mb-2">Ingredients:</h3>
+                <ul className="list-disc list-inside">
+                  {ingredientsList.map((ingredient, index) => (
+                    <li key={index}>{ingredient}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-4">
+                <h3 className="font-semibold mb-2">Instructions:</h3>
+                <ol className="list-decimal list-inside">
+                  {instructionsList.map((instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  ))}
+                </ol>
+              </div>
+            </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
