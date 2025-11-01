@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "recipe-pasta",
+      "description": "A delicious pasta dish",
+      "imageUrl": "https://images.unsplash.com/photo-1611270629569-8b357cb88da9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwYXN0YSUyMGRpc2h8ZW58MHx8fHwxNzYxOTE2Mjc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pasta dish"
+    },
+    {
+      "id": "recipe-salad",
+      "description": "A fresh and healthy salad",
+      "imageUrl": "https://images.unsplash.com/photo-1570197571499-166b36435e9f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmcmVzaCUyMHNhbGFkfGVufDB8fHx8MTc2MTkwNDc0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fresh salad"
+    },
+    {
+      "id": "recipe-curry",
+      "description": "A fragrant and spicy curry",
+      "imageUrl": "https://images.unsplash.com/photo-1610012370944-e822e8bb91c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGljeSUyMGN1cnJ5fGVufDB8fHx8MTc2MTgwOTE2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spicy curry"
+    },
+    {
+      "id": "recipe-stir-fry",
+      "description": "A quick and easy stir-fry",
+      "imageUrl": "https://images.unsplash.com/photo-1758979690131-11e2aa0b142b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx2ZWdldGFibGUlMjBzdGlyLWZyeXxlbnwwfHx8fDE3NjE4MzM2OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vegetable stir-fry"
+    },
+    {
+      "id": "recipe-soup",
+      "description": "A comforting bowl of soup",
+      "imageUrl": "https://images.unsplash.com/photo-1721152534202-bc3f56eb41e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoZWFydHklMjBzb3VwfGVufDB8fHx8MTc2MTgwNTI5OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hearty soup"
+    }
+  ]
+}
