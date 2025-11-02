@@ -5,7 +5,7 @@
  *
  * - findRecipe - A function that handles the recipe finding process.
  * - FindRecipeInput - The input type for the findRecipe function.
- * - FindRecipeOutput - The return type for the findRecipe function.
+ * - FindRecipeOutput - The return type for the aifindRecipe function.
  */
 
 import {ai} from '@/ai/genkit';
@@ -39,8 +39,8 @@ For the given dish and number of people, provide a list of ingredients and a lis
 - Do not number the instructions.
 - Do not add any introductory or concluding text.
 
-Dish Name: {{{dishName}}}
-Number of People: {{{numberOfPeople}}}
+Dish Name: {{dishName}}
+Number of People: {{numberOfPeople}}
 
 Ingredients:
 Instructions:`,

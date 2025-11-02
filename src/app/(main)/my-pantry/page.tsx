@@ -18,7 +18,7 @@ import { CalendarIcon, ChefHat, BrainCircuit, PlusCircle, Trash2, Edit } from 'l
 import { cn } from '@/lib/utils';
 import { ITEM_UNITS } from '@/lib/constants';
 import type { PantryItem, Recipe } from '@/lib/types';
-import { suggestRecipesFromExpiringItems } from '@/ai/flows/expiry-based-recipe-suggestions';
+import { suggestRecipesFromExpiringItems } from '@/ai/ai-pantry-suggestion';
 import { useToast } from '@/hooks/use-toast';
 import { RecipeDialog } from '@/components/shared/RecipeDialog';
 
@@ -101,10 +101,38 @@ function PantryItemForm({ item, onFinished }: { item?: PantryItem, onFinished: (
   );
 }
 
+function RecipeSuggestionDialog({ recipes, isOpen, onOpenChange, onSelectRecipe }: { recipes: Recipe[] | null, isOpen: boolean, onOpenChange: (isOpen: boolean) => void, onSelectRecipe: (recipe: Recipe) => void }) {
+  if (!recipes) return null;
+
+  const handleSelect = (recipe: Recipe) => {
+    onSelectRecipe(recipe);
+    onOpenChange(false);
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Suggested Recipes</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-2">
+          {recipes.map((recipe, index) => (
+            <Button key={index} variant="outline" className="w-full justify-start" onClick={() => handleSelect(recipe)}>
+              {recipe.name}
+            </Button>
+          ))}
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
 function AISection() {
   const { state } = useApp();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestedRecipes, setSuggestedRecipes] = useState<Recipe[] | null>(null);
+  const [isSuggestionListOpen, setIsSuggestionListOpen] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [isRecipeOpen, setIsRecipeOpen] = useState(false);
 
@@ -122,10 +150,10 @@ function AISection() {
         expiringItems: items.map(item => ({ name: item.name, quantity: item.quantity, unit: item.unit })),
         numberOfPeople: 2,
       };
-      const recipes = await suggestRecipesFromExpiringItems(input);
-      if (recipes && recipes.length > 0) {
-        setSelectedRecipe(recipes[0]);
-        setIsRecipeOpen(true);
+      const result = await suggestRecipesFromExpiringItems(input);
+      if (result && result.recipes && result.recipes.length > 0) {
+        setSuggestedRecipes(result.recipes);
+        setIsSuggestionListOpen(true);
       } else {
         toast({ title: 'No Recipes Found', description: 'Our AI chef couldn\'t find a recipe for these items.' });
       }
@@ -173,6 +201,15 @@ function AISection() {
           </CardContent>
         </Card>
       </div>
+      <RecipeSuggestionDialog 
+        recipes={suggestedRecipes} 
+        isOpen={isSuggestionListOpen} 
+        onOpenChange={setIsSuggestionListOpen} 
+        onSelectRecipe={(recipe) => {
+          setSelectedRecipe(recipe);
+          setIsRecipeOpen(true);
+        }}
+      />
       <RecipeDialog recipe={selectedRecipe} isOpen={isRecipeOpen} onOpenChange={setIsRecipeOpen} />
     </>
   );

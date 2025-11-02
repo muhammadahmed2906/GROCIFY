@@ -45,9 +45,9 @@ const prompt = ai.definePrompt({
 Given the following list of past purchases, suggest grocery items that the user might want to add to their grocery list.
 
 Past Purchases:
-{{#each pastPurchases}}- {{this}}\n{{/each}}
+{{{pastPurchases}}}
 
-Suggested Items:`, 
+Suggested Items:`,
 });
 
 const smartGrocerySuggestionsFlow = ai.defineFlow(

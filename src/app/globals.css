@@ -70,3 +70,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .primary-list-marker > li::marker {
+    color: hsl(var(--primary));
+  }
+}

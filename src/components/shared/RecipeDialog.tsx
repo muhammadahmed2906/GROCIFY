@@ -46,15 +46,15 @@ export function RecipeDialog({ recipe, isOpen, onOpenChange }: RecipeDialogProps
             <div id="recipe-description">
               <div>
                 <h3 className="font-semibold mb-2">Ingredients:</h3>
-                <ul className="list-disc list-inside">
+                <ol className="list-decimal list-inside space-y-1 marker:text-[hsl(231_48%_48%)]">
                   {ingredientsList.map((ingredient, index) => (
                     <li key={index}>{ingredient}</li>
                   ))}
-                </ul>
+                </ol>
               </div>
               <div className="mt-4">
                 <h3 className="font-semibold mb-2">Instructions:</h3>
-                <ol className="list-decimal list-inside">
+                <ol className="list-decimal list-inside space-y-1 marker:text-[hsl(231_48%_48%)]">
                   {instructionsList.map((instruction, index) => (
                     <li key={index}>{instruction}</li>
                   ))}

@@ -45,13 +45,11 @@ const suggestRecipesFromExpiringItemsPrompt = ai.definePrompt({
   prompt: `You are a chef specializing in creating recipes that utilize ingredients that are about to expire, minimizing food waste.  Given a list of expiring items from a user's pantry, suggest recipes that prominently feature these ingredients. Provide detailed ingredients and cooking instructions tailored to the specified number of people.
 
 Expiring Items:
-{{#each expiringItems}}
-- {{quantity}} {{unit}} of {{name}}
-{{/each}}
+{{{expiringItems}}}
 
-Number of People: {{numberOfPeople}}
+Number of People: {{{numberOfPeople}}}
 
-Recipes:`, // Modified to use Handlebars each helper
+Recipes:`,
 });
 
 const suggestRecipesFromExpiringItemsFlow = ai.defineFlow(

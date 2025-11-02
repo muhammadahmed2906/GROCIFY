@@ -50,7 +50,7 @@ const prompt = ai.definePrompt({
   output: {schema: MealPlannerOutputSchema},
   prompt: `You are a helpful assistant that generates a grocery list based on planned meals and the number of people they are for, while taking into account existing pantry items.
 
-  Number of People: {{{numberOfPeople}}}
+  Number of People: {{numberOfPeople}}
 
   Meals:
   {{#each meals}}
