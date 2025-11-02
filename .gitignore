@@ -1,3 +1,6 @@
 .env.local
 node_modules
 node_modules
+
+# Next.js build output aur cache files ko ignore karo
+.next/
